@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/huaao-homepage/\u534e\u6fb3\u6570\u503c\u5e73\u53f0\u4e3b\u9875/index.html"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/huaao-homepage/\u534e\u6fb3\u6570\u503c\u5e73\u53f0\u4e3b\u9875/:path*"
+    }
+  ]
+}
