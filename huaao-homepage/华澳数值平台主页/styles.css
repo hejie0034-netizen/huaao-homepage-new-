@@ -197,28 +197,75 @@ a {
 .hero-stats {
   width: min(720px, 100%);
   margin: 58px 0 0;
-  padding: 0;
   gap: 14px;
   flex-wrap: wrap;
 }
 
-.hero-stats div {
+.stat-card {
   min-width: 160px;
+  position: relative;
   padding: 16px 18px;
+  overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.08);
+  transition: transform 0.24s ease, border-color 0.24s ease, background 0.24s ease, box-shadow 0.24s ease;
 }
 
-.hero-stats dt {
+.stat-card::after,
+.interactive-card::after {
+  content: ">";
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  color: var(--teal);
+  font-size: 18px;
+  font-weight: 900;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.24s ease, transform 0.24s ease;
+}
+
+.stat-card:hover,
+.stat-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: rgba(0, 194, 168, 0.7);
+  background: rgba(255, 255, 255, 0.13);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card:hover::after,
+.stat-card:focus-visible::after,
+.interactive-card:hover::after,
+.interactive-card:focus-visible::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.stat-card:active,
+.interactive-card:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.stat-card:focus-visible,
+.interactive-card:focus-visible,
+.btn:focus-visible,
+.text-link:focus-visible {
+  outline: 3px solid rgba(0, 194, 168, 0.42);
+  outline-offset: 3px;
+}
+
+.stat-card strong {
+  display: block;
   color: var(--gold);
   font-size: 28px;
   font-weight: 900;
   line-height: 1.1;
 }
 
-.hero-stats dd {
-  margin: 6px 0 0;
+.stat-card span {
+  display: block;
+  margin-top: 6px;
   color: #dce9f5;
   font-size: 13px;
 }
@@ -280,7 +327,7 @@ a {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.feature-grid article,
+.feature-card,
 .strategy-card,
 .platform-panel,
 .news-item {
@@ -290,8 +337,37 @@ a {
   box-shadow: var(--shadow);
 }
 
-.feature-grid article {
+.feature-card {
   padding: 24px;
+}
+
+.interactive-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.interactive-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(0, 194, 168, 0.12), transparent 42%);
+  opacity: 0;
+  transition: opacity 0.24s ease;
+}
+
+.interactive-card:hover,
+.interactive-card:focus-visible {
+  transform: translateY(-6px);
+  border-color: rgba(0, 194, 168, 0.62);
+  box-shadow: 0 24px 58px rgba(14, 34, 55, 0.18);
+}
+
+.interactive-card:hover::before,
+.interactive-card:focus-visible::before {
+  opacity: 1;
 }
 
 .feature-index {
